@@ -22,3 +22,20 @@ describe 'A test suite', ->
     it 'should return -1 when a searched for item is not present', ->
       array.indexOf(4).should.equal -1
 
+describe 'Graph tests', ->
+  describe 'A graph with a single node', ->
+    it 'should starting at A and finishing at A have a length of zero', ->
+      route = { 
+        length: -> 0
+      }
+      route.length().should.equal 0
+
+  describe 'A graph with two nodes', ->
+    it 'should have a length of one', ->
+      route = { 
+        itinerary: ['A', 'F'],
+        length: -> @itinerary.length - 1
+      }
+      route.length().should.equal 1
+
+
