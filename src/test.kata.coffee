@@ -1,4 +1,8 @@
-chai.should()
+if (typeof module) is 'undefined' # means running in the browser
+  chai.should()
+else
+   console.log 'running in node'
+   should = require('chai').should()
 
 describe 'A test suite', ->
   describe 'A string of fifteen letters', ->
