@@ -1,10 +1,19 @@
 if (typeof module) is 'undefined' # means running in the browser
+  console.log 'running in the browser'
   chai.should()
+  f = this.fibonacci 
 else
-   console.log 'running in node'
-   should = require('chai').should()
+  console.log 'running in node'
+  should = require('chai').should()
+  f = require './fibonacci.js'
+
+someFunc = f.someFunc
+
 
 describe 'A test suite', ->
+  it 'someFunc should be true', ->
+    someFunc().should.equal true
+
   describe 'A string of fifteen letters', ->
     myString = "Now is the time"
 

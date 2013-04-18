@@ -5,4 +5,4 @@ clean:
 	rm lib/*.js
 
 test:
-	mocha lib/test*
+	mocha -R spec lib/test*
