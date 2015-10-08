@@ -29,7 +29,7 @@ nbproject
 .svn
 .CVS
 .idea
-node_modules
+node_modules/
 
-# ignore compiled coffeescript files
-lib/*.js
+# ignore compiled CoffeeScript files
+lib/
