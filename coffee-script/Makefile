@@ -4,5 +4,5 @@ build:
 clean:
 	rm lib/*.js
 
-test:
+test: build
 	mocha -R spec lib/test*

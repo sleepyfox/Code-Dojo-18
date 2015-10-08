@@ -32,4 +32,4 @@ nbproject
 node_modules/
 
 # ignore compiled CoffeeScript files
-lib/
+**/lib/*.js
