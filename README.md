@@ -8,6 +8,8 @@ For any particular [undirected graph](https://en.wikipedia.org/wiki/Graph_%28mat
 
 Slides from the meeting can be found [here](https://speakerdeck.com/sleepyfox/code-dojo-18-feb-2013). You can find out more about the London Code Dojo at our [homepage](http://www.meetup.com/London-Code-Dojo/).
 
+Starter code for in browser tests is in the [coffee-script](https://github.com/sleepyfox/Code-Dojo-18/tree/master/coffee-script) folder.
+
 # License
 This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 license - see [http://creativecommons.org/licenses/by-nc-sa/4.0/](http://creativecommons.org/licenses/by-nc-sa/4.0/)
 
