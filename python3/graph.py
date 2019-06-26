@@ -1,6 +1,5 @@
 import unittest
 
-
 def remove_from_graph(graph, node):
     new_graph = graph
     del(new_graph[node])
@@ -9,7 +8,7 @@ def remove_from_graph(graph, node):
             new_graph[key].remove(node)
     return new_graph
 
-def find_shortest_path(graph, start, end):
+def __find_shortest_path(graph, start, end):
     routes = []
     route = [start]
     list_of_next_places = graph[start]
@@ -27,32 +26,33 @@ def find_shortest_path(graph, start, end):
     routes.append(len(route))
     return min(routes)
 
-def shortest(graph, start, end, counter):
-    for next_node in graph(start):
-        if end in graph[start]:
-            return 1 + counter
+def find_shortest_path(graph, start, end, counter, routes=[]):
+    for next_node in graph[start]:
+        if next_node == end:
+            routes.append(1 + counter)
         else:
-            return shortest(remove_from_graph(graph, "A"), next_node, end, counter + 1)
-
+            new_graph = remove_from_graph(graph, start)
+            find_shortest_path(new_graph, next_node, end, counter + 1, routes)
+    return min(routes)
 
 class TestGraphTraversal(unittest.TestCase):
 
     def test_a_graph_with_two_nodes(self):
         graph = {"A": ["B"],
                  "B": ["A"]}
-        self.assertEqual(find_shortest_path(graph, "A", "B"), 2)
+        self.assertEqual(find_shortest_path(graph, "A", "B", 1), 2)
 
     def test_a_graph_with_three_nodes_in_a_line(self):
         graph = {"A": ["B"],
                  "B": ["A", "C"],
                  "C": ["B"]}
-        self.assertEqual(find_shortest_path(graph, "A", "C"), 3)
+        self.assertEqual(find_shortest_path(graph, "A", "C", 1), 3)
 
-    # def test_a_graph_with_three_nodes_in_a_triangle(self):
-    #     graph = {"A": ["B", "C"],
-    #              "B": ["A", "C"],
-    #              "C": ["B", "A"]}
-    #     self.assertEqual(find_shortest_path(graph, "A", "C"), 2)
+    def test_a_graph_with_three_nodes_in_a_triangle(self):
+        graph = {"A": ["B", "C"],
+                 "B": ["A", "C"],
+                 "C": ["B", "A"]}
+        self.assertEqual(find_shortest_path(graph, "A", "C", 1), 2)
 
 
 class TestGraphNinja(unittest.TestCase):
