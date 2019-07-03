@@ -38,6 +38,9 @@ class TestGraphy(unittest.TestCase):
     def test_can_get_from_b_to_c_in_a_three_node_graph(self):
         self.assertEqual(['A', 'C'], next_node('B', [('A', 'B'), ('B', 'C')]))
 
+    def test_can_get_from_a_to_b_and_c_in_a_triangular_graph(self):
+        self.assertEqual(['B', 'C'], next_node('A', [('A', 'B'), ('B', 'C'), ('C', 'A')]))
+        
 if __name__ == '__main__':
     unittest.main()
 
