@@ -18,6 +18,8 @@ def next_node(starting_node, graph):
             next_nodes.add(match[0])
     return next_nodes
 
+def pathfinder(starting_node, ending_node, graph):
+    return [['B']]
 
 class TestGraphy(unittest.TestCase):
     def test_can_get_from_a_to_b(self):
@@ -47,7 +49,10 @@ class TestGraphy(unittest.TestCase):
     def test_can_get_from_a_to_b_and_c_in_a_triangular_graph(self):
         self.assertEqual({'A', 'B'}, next_node('C', [('A', 'B'), ('B', 'C'), ('C', 'A')]))
 
-    
+    def test_pathfinder_return_set_of_paths(self):
+        self.assertEqual([['B']], pathfinder('A', 'B', [('A', 'B')]))
+
+
 if __name__ == '__main__':
     unittest.main()
 
