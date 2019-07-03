@@ -1,5 +1,10 @@
 import unittest
 
+EMPTY_GRAPH = []
+SIMPLE_GRAPH = [('A', 'B')]
+LINEAR_GRAPH = [('A', 'B'), ('B', 'C')]
+TRIANGULAR_GRAPH = [('A', 'B'), ('B', 'C'), ('C', 'A')]
+
 def next_node(starting_node, graph):
     if not graph:
         return set()
@@ -23,35 +28,34 @@ def pathfinder(starting_node, ending_node, graph):
 
 class TestGraphy(unittest.TestCase):
     def test_can_get_from_a_to_b(self):
-        self.assertEqual({'B'}, next_node('A', [('A', 'B')]))
+        self.assertEqual({'B'}, next_node('A', SIMPLE_GRAPH))
 
     def test_can_get_from_b_to_a(self):
-        self.assertEqual({'A'}, next_node('B', [('A', 'B')]))
+        self.assertEqual({'A'}, next_node('B', SIMPLE_GRAPH))
 
     def test_no_next_node_in_a_one_node_graph(self):
-        self.assertEqual(set(), next_node('A', []))
+        self.assertEqual(set(), next_node('A', EMPTY_GRAPH))
 
     def test_no_next_node_if_starting_node_not_in_graph(self):
-        self.assertEqual(set(), next_node('C', [('A', 'B')]))
+        self.assertEqual(set(), next_node('C', SIMPLE_GRAPH))
 
     def test_can_get_from_a_to_b_in_a_three_node_graph(self):
-        self.assertEqual({'B'}, next_node('A', [('A', 'B'), ('B', 'C')]))
+        self.assertEqual({'B'}, next_node('A', LINEAR_GRAPH))
 
     def test_can_get_from_b_to_c_in_a_three_node_graph(self):
-        self.assertEqual({'A', 'C'}, next_node('B', [('A', 'B'), ('B', 'C')]))
+        self.assertEqual({'A', 'C'}, next_node('B', LINEAR_GRAPH))
 
     def test_can_get_from_a_to_b_and_c_in_a_triangular_graph(self):
-        self.assertEqual({'B', 'C'}, next_node('A', [('A', 'B'), ('B', 'C'), ('C', 'A')]))
+        self.assertEqual({'B', 'C'}, next_node('A', TRIANGULAR_GRAPH))
 
     def test_can_get_from_a_to_b_and_c_in_a_triangular_graph(self):
-        self.assertEqual({'A', 'C'}, next_node('B', [('A', 'B'), ('B', 'C'), ('C', 'A')]))
+        self.assertEqual({'A', 'C'}, next_node('B', TRIANGULAR_GRAPH))
 
     def test_can_get_from_a_to_b_and_c_in_a_triangular_graph(self):
-        self.assertEqual({'A', 'B'}, next_node('C', [('A', 'B'), ('B', 'C'), ('C', 'A')]))
+        self.assertEqual({'A', 'B'}, next_node('C', TRIANGULAR_GRAPH))
 
     def test_pathfinder_return_set_of_paths(self):
-        self.assertEqual([['B']], pathfinder('A', 'B', [('A', 'B')]))
-
+        self.assertEqual([['B']], pathfinder('A', 'B', SIMPLE_GRAPH))
 
 if __name__ == '__main__':
     unittest.main()
